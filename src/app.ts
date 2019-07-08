@@ -1,17 +1,35 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// node_modules
 import fastify from 'fastify';
+const GQL = require('fastify-gql');
+import { buildSchema } from 'type-graphql';
+import { Container } from 'typedi';
 
-const app = fastify({ logger: true });
+// app
+const fastifyApp = fastify({ logger: true });
 
-app.register(require('fastify-cors'), {});
+const app = async () => {
+  try {
+    fastifyApp.register(require('fastify-cors'), {});
 
-// Declare a route
-app.get('/', async (request: any, reply: any) => {
-  request;
-  reply.code(200);
-  reply.header('Content-Type', 'application/json');
-  reply.send({ message: 'hello world!' });
-  return;
-});
+    const schema = await buildSchema({
+      resolvers: [__dirname + `/**/*.resolver.ts`],
+      container: Container,
+    });
+
+    fastifyApp.register(GQL, {
+      schema,
+      graphiql: true,
+    });
+
+    fastifyApp.listen(3000, (err: any, address: any) => {
+      if (err) throw err;
+      fastifyApp.log.info(`server listening on ${address}`);
+    });
+  } catch (error) {
+    throw error;
+  }
+};
 
 export { app };
