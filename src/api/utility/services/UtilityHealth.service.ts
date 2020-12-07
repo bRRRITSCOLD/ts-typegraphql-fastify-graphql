@@ -8,13 +8,14 @@ import { logger } from '../../../lib/logger';
 
 // models
 import { APIError } from '../../../models/error';
+import { UtilityHealthCheckObjectType } from '../types';
 
 @Service()
 export class UtilityHealthService {
-  public async healthCheck(): Promise<any> {
+  public async healthCheck(): Promise<UtilityHealthCheckObjectType> {
     try {
       // return health check explicitly
-      return { status: 'HELATHY' };
+      return { status: 'HEALTHY' };
     } catch (err) {
       // build error
       const error = new APIError(err);

@@ -52,7 +52,7 @@ const bootstrap = async () => {
     fastifyApp.register(fastifyHelmet, {
       contentSecurityPolicy: {
         directives: {
-          'default-src': "'self' https://unpkg.com 'unsafe-inline",
+          'default-src': "'self' https://unpkg.com 'unsafe-inline'",
         },
       },
     });
@@ -65,7 +65,7 @@ const bootstrap = async () => {
     // register graphql
     fastifyApp.register(require('mercurius'), {
       schema,
-      graphiql: 'graphiql',
+      graphiql: true,
       context: (request: unknown, response: unknown) => {
         // Return an object that will be available in your GraphQL resolvers
         return {

@@ -1,20 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 // node_modules
 import { FastifyInstance, FastifyLoggerInstance } from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 import { expect } from 'chai';
 import * as _ from 'lodash';
-import Container from 'typedi';
 
 // libraries
 import { e2eTestEnv } from '../../../../../lib/environment';
-
-// models
-import { APIError } from '../../../../../../src/models/error';
-import { AnyObject } from '../../../../../../src/models/common';
-
-// services
-import { UtilityHealthService } from '../../../../../../src/api/utility/services/UtilityHealth.service';
 
 // testees
 import { bootstrap } from '../../../../../../src/app';
@@ -78,7 +69,7 @@ describe('api/utility/resolvers/UtilityHealth.resolver - POST /graphql query hea
       }
     });
 
-    it('- shoud return the health status of the api and any subsequent service connections that it deems necessary to track', async () => {
+    it('- shoud return the health status of the api and status of any subsequent service connections that it deems necessary to track', async () => {
       try {
         /////////////////////////
         //////// setup //////////
@@ -92,7 +83,7 @@ describe('api/utility/resolvers/UtilityHealth.resolver - POST /graphql query hea
           method: 'POST',
           url: '/graphql',
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
           },
           payload: {
             query: `{

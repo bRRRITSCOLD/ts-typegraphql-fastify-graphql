@@ -1,6 +1,3 @@
-/* eslint-disable import/newline-after-import */
-/* eslint-disable import/first */
-/* eslint-disable import/order */
 // node_modules
 import 'reflect-metadata';
 import open from 'open';
@@ -74,7 +71,7 @@ process.on('unhandledRejection', (err: unknown) => {
     logger.info(`{}App::server started::serverInfo=${anyUtils.stringify(serverInfo)}`);
     if (env.isLocal) logger.info(`{}App::graphiql running::url=${anyUtils.stringify(`${serverInfo}/graphiql`)}`);
     // open chrome to graphiql for dev
-    if (env.isLocal) await open(`${serverInfo}/graphiql`, { app: 'chrome' });
+    if (env.isLocal) await open(`${serverInfo}/graphiql`, { app: 'google chrome' });
   } catch (err) {
     // build error
     const error = new APIError(err);
