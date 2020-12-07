@@ -23,7 +23,7 @@ class UtilityHealth {}
 export class UtilityHealthResolver {
   public constructor(private readonly utilityHealthService: UtilityHealthService) {}
 
-  @Query((_returns: unknown) => [UtilityHealthCheckObjectType])
+  @Query((_returns: unknown) => UtilityHealthCheckObjectType)
   public async healthCheck(@Ctx() _context: any): Promise<UtilityHealthCheckObjectType> {
     try {
       // call service to get
