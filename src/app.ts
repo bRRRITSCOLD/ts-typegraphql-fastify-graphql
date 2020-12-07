@@ -54,7 +54,7 @@ const bootstrap = async () => {
       resolvers: [`${__dirname}/**/*.resolver.ts`],
       container: Container,
       globalMiddlewares: [ErrorInterceptor],
-    });
+    } as any);
     // register graphql
     fastifyApp.register(require('mercurius'), {
       schema,
