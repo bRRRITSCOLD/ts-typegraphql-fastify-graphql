@@ -24,7 +24,7 @@ export class UtilityHealthResolver {
   public constructor(private readonly utilityHealthService: UtilityHealthService) {}
 
   @Query((_returns: unknown) => [UtilityHealthCheckObjectType])
-  public async twitterUserTimeline(@Ctx() _context: any): Promise<UtilityHealthCheckObjectType> {
+  public async healthCheck(@Ctx() _context: any): Promise<UtilityHealthCheckObjectType> {
     try {
       // call service to get
       // a user timeline that
@@ -37,7 +37,7 @@ export class UtilityHealthResolver {
       // build error
       const error = new APIError(err);
       // log for debugging and run support purposes
-      logger.error(`{}TwitterTimelineResolver::#twitterUserTimeline::error executing::error=${anyUtils.stringify(error)}`);
+      logger.error(`{}UtilityHealthResolver::#healthCheck::error executing::error=${anyUtils.stringify(error)}`);
       // throw error explicitly
       throw { errors: [error] };
     }
