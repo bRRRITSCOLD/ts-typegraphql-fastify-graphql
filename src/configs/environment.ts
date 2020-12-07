@@ -1,3 +1,3 @@
 export default {
-  name: 'blainerrichardson.cloud-api',
+  name: 'ts-typegraphql-fastify-graphql',
 };
